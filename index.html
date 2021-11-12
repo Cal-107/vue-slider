@@ -16,10 +16,14 @@
             <div class="images">
                 <!-- genera con vue -->
                 <div class="image-container">
-                    <img src="./img/01.jpg" alt="Lorem">
+
+                    <!-- imposto su html gli elementi dell'array di oggetti su vue, rendendo dinamici gli attributi -->
+                    <img 
+                    :src="slides[activeSlide].image" 
+                    :alt="slides[activeSlide].title">
                     <div class="text">
-                        <h3>Lorem</h3>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam inventore eligendi ex ad ullam, cumque provident totam omnis, magnam dolores dolorum corporis.</p>
+                        <h3> {{ slides[activeSlide].title }} </h3>
+                        <p> {{ slides[activeSlide].text }} </p>
                     </div>
                 </div>
             </div>
