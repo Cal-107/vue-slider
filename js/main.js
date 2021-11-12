@@ -10,6 +10,12 @@
 
 const app = new Vue(
     {
+        // imposto l'autoplay utilizzando la funzione già creata ( nextClick() )
+        created() {
+            setInterval(() => {
+                this.nextClick()
+            }, 3000);
+        },
         el: '#root',
         data: {
             slides: [
@@ -39,7 +45,31 @@ const app = new Vue(
                     text: 'Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam inventore eligendi ex ad ullam, cumque provident totam omnis.',
                 },
             ],
+            // Creo un contatore per l'indice dove definire la classe active
             activeSlide: 0,
+        },
+        // Creo la sezione delle funzioni per i click
+        methods: {
+            // next click
+            nextClick() {
+                this.activeSlide++;
+
+                if (this.activeSlide > this.slides.length - 1) {
+                    this.activeSlide = 0;
+                }
+            },
+            // prev click
+            prevClick() {
+                this.activeSlide--;
+                
+                if (this.activeSlide < 0) {
+                    this.activeSlide = this.slides.length - 1;
+                }
+            },
+            // click su thumbs
+            thumbClick(index) {
+                this.activeSlide = index;
+            }
         },
     }
 );

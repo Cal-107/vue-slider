@@ -11,6 +11,7 @@
 <body>
 
     <div id="root">
+
         <section class="carousel">
             <!-- Images -->
             <div class="images">
@@ -20,25 +21,34 @@
                     <!-- imposto su html gli elementi dell'array di oggetti su vue, rendendo dinamici gli attributi -->
                     <img 
                     :src="slides[activeSlide].image" 
-                    :alt="slides[activeSlide].title">
+                    v-bind:alt="slides[activeSlide].title">
+
                     <div class="text">
                         <h3> {{ slides[activeSlide].title }} </h3>
                         <p> {{ slides[activeSlide].text }} </p>
                     </div>
+
                 </div>
             </div>
     
             <!-- Thumbnails -->
             <div class="thumbs">
                 <!-- genera con vue  -->
-                <div class="thumb active">
-                    <img src="./img/01.jpg" alt="Lorem">
+                <!-- utilizzo il v-for per iterare sull'array -->
+                <div 
+                v-for="(element, index) in slides"
+                class="thumb"
+                v-bind:class="{active: index === activeSlide}"
+                @click="thumbClick(index)">
+
+                    <img :src="element.image" :alt="element.title">
                 </div>
-    
-                <div class="prev">&uarr;</div>
-                <div class="next">&darr;</div>
+
+                <div class="prev" @click="prevClick">&uarr;</div>
+                <div class="next" @click="nextClick">&darr;</div>
             </div>
         </section>
+
     </div>
 
     <script src="./js/main.js"></script>
